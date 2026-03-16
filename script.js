@@ -1,17 +1,15 @@
 function predict() {
+  let fileInput = document.getElementById('upload');
+  let symptoms = document.getElementById('symptoms').value;
+  let result = document.getElementById('result');
 
-    const symptoms = document.getElementById("symptoms").value;
-    const file = document.getElementById("upload").files[0];
+  if(fileInput.files.length === 0 || symptoms === "") {
+    result.innerText = "Please upload an image and enter symptoms!";
+    return;
+  }
 
-    if (!symptoms && !file) {
-        document.getElementById("result").innerText = "Please enter symptoms or upload an image.";
-        return;
-    }
+  let diseases = ["Pneumonia", "Normal", "Tuberculosis"];
+  let prediction = diseases[Math.floor(Math.random() * diseases.length)];
 
-    document.getElementById("result").innerText = "Analyzing...";
-
-    setTimeout(() => {
-        document.getElementById("result").innerText =
-            "Possible condition detected. Please consult a doctor.";
-    }, 2000);
+  result.innerText = `Predicted Disease: ${prediction}\nSymptoms: ${symptoms}`;
 }
